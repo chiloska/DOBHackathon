@@ -1,0 +1,40 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Agenda for {{Date | date:'fullDate'}}</h1>
+  <mat-grid-list cols="4" rowHeight="350px">
+    <mat-grid-tile *ngFor="let agenda of agendas" [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{agenda.date}}, {{agenda.time}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>
+            <mat-list role="list">
+              <mat-list-item role="listitem">Patient: {{agenda.name}}</mat-list-item>
+              <mat-list-item role="listitem">Doctor: {{agenda.doctor}}</mat-list-item>
+              <mat-list-item role="listitem">Clinic : {{agenda.clinicNumber}}</mat-list-item>
+            </mat-list>
+          </div>
+          <div>
+            <mat-grid-list cols="2">
+              <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary">Details</button>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="accent">Cancel</button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,58 @@
+<div class="grid-container" *ngIf="patient">
+  <mat-grid-list cols="1" rowHeight="650px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{patient.fullName}}, {{patient.age}} years. {{patient.gender}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <mat-grid-list cols="3" rowHeight="200px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-list>
+                <mat-list-item>Height: {{patient.height}} </mat-list-item>
+                <mat-list-item>Weight: {{patient.weight}} </mat-list-item>
+              </mat-list>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-list>
+                <mat-list-item>Email: {{patient.email}} </mat-list-item>
+                <mat-list-item>Phone: {{patient.phone}} </mat-list-item>
+              </mat-list>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-list *ngFor="let address of patient.addresses">
+                <mat-list-item>Address and Number: {{address.addressNumber}} </mat-list-item>
+                <mat-list-item>City: {{address.City}} </mat-list-item>
+                <mat-list-item>Country: {{address.Country}} </mat-list-item>
+              </mat-list>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-grid-list cols="2" rowHeight="300px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+              <mat-grid-tile-header>History</mat-grid-tile-header>
+              <mat-list *ngFor="let history of patient.history">
+                <mat-list-item>Date: {{history.date}} </mat-list-item>
+                <mat-list-item>Doctor: {{history.doctorName}} </mat-list-item>
+                <mat-list-item>Locaton: {{history.location}} </mat-list-item>
+                <mat-list-item>Completed: {{history.attended}} </mat-list-item>
+              </mat-list>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-grid-tile-header>Laboratory Result</mat-grid-tile-header>
+                <mat-list *ngFor="let lab of patient.labResults">
+                  <mat-list-item>Date: {{lab.date}} </mat-list-item>
+                  <mat-list-item>Doctor: {{lab.doctor}} </mat-list-item>
+                  <mat-list-item>Exam Type: {{lab.resultType}} </mat-list-item>
+                  <mat-list-item>Exam Results: {{lab.resultData}} </mat-list-item>
+                </mat-list>
+              </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

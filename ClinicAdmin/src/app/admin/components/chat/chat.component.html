@@ -1,0 +1,34 @@
+<mat-card class="dashboard-card">
+  <mat-card-header>
+    <mat-card-title>
+      Chat
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content">
+    <div *ngIf="messages">
+      <div class="message-container" *ngFor="let message of messages">
+        <div class="spacing">
+          <div class="pic" [style.background-image]="'url(' + message.photoUrl + ')'"></div>
+        </div>
+        <div class="message">
+          <span *ngIf="message.text" [style]="message.sentiment">{{ message.text }}</span>
+          <img *ngIf="message.imageUrl" [src]="message.imageUrl + (message.moderated ? '&amp;moderated=1' : '')">
+        </div>
+        <div class="name">{{ message.name }}</div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <form id="message-form" (submit)="saveMessage($event, box)">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input #box class="mdl-textfield__input" type="text" id="message" (keyup)="update(box.value)"
+            (blur)="update(box.value)" placeholder="Message...">
+        </div>
+        <button id="submit" [disabled]="!value" type="submit"
+          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+          Send
+        </button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

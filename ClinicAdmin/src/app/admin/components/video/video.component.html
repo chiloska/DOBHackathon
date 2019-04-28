@@ -1,0 +1,28 @@
+<mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>
+        Video Call
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <div>
+        <div>
+          <button #startButton [disabled]="startButtonDisabled" (click)="start()">Start</button>
+          <button #callButton [disabled]="callButtonDisabled" (click)="call()">Call</button>
+          <button #hangupButton [disabled]="hangupButtonDisabled" (click)="hangup()">Hang Up</button>
+        </div>
+      </div>
+      <br/>
+      <mat-grid-list cols="1" rowHeight="300px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-grid-tile-header>User</mat-grid-tile-header>
+          <video #localVideo playsinline autoplay muted></video>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-grid-tile-header>Remote</mat-grid-tile-header>
+          <video #remoteVideo playsinline autoplay></video>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
